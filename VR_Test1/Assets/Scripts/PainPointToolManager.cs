@@ -27,7 +27,14 @@ public class PainPointToolManager : MonoBehaviour
     [SerializeField] private GameObject _painPointPrefab;
 
 
-
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        instance = this;
+    }
 
     public void SpawnPainPoint(OVRSkeleton.SkeletonType hand, OVRSkeleton.BoneId boneId)
     {

@@ -9319,10 +9319,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rightHand: {fileID: 1494596407}
-  _leftHand: {fileID: 0}
-  _rightSkeleton: {fileID: 0}
-  _leftSkeleton: {fileID: 0}
-  _painPointPrefab: {fileID: 0}
+  _leftHand: {fileID: 1393894363}
+  _rightSkeleton: {fileID: 1494596406}
+  _leftSkeleton: {fileID: 1393894362}
+  _painPointPrefab: {fileID: 8800825384297358568, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
 --- !u!114 &883600968
 MonoBehaviour:
   m_ObjectHideFlags: 0
