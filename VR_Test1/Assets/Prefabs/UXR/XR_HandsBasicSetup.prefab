@@ -623,7 +623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4232179252350412596}
   m_Layer: 0
-  m_Name: HandsBasicSetup
+  m_Name: XR_HandsBasicSetup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
