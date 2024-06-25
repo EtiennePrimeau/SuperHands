@@ -1,3 +1,4 @@
+using Oculus.Interaction.HandGrab;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,8 @@ public class PainPointToolManager : MonoBehaviour
     [SerializeField] private OVRHand _leftHand;
     [SerializeField] private OVRSkeleton _rightSkeleton;
     [SerializeField] private OVRSkeleton _leftSkeleton;
+    [SerializeField] private HandGrabInteractor _leftHandGrabInteractor;
+    [SerializeField] private HandGrabInteractor _rightHandGrabInteractor;
 
     [SerializeField] private GameObject _painPointPrefab;
 
@@ -73,8 +76,26 @@ public class PainPointToolManager : MonoBehaviour
         {
             if (bone.Id == boneId)
             {
-                Instantiate(_painPointPrefab, bone.Transform);
+                var go = Instantiate(_painPointPrefab, bone.Transform);
+                go.GetComponent<PainPointInteractions>().Init(hand, GetOppositeSideHandInteractor(hand));
             }
+        }
+    }
+
+    private HandGrabInteractor GetOppositeSideHandInteractor(OVRSkeleton.SkeletonType hand)
+    {
+        if (hand == OVRSkeleton.SkeletonType.HandLeft)
+        {
+            return _rightHandGrabInteractor;
+        }
+        if (hand == OVRSkeleton.SkeletonType.HandRight)
+        {
+            return _leftHandGrabInteractor;
+        }
+        else
+        {
+            Debug.LogError("OVR Skeleton is not a hand");
+            return null;
         }
     }
 }
