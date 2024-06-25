@@ -16,18 +16,6 @@ PrefabInstance:
       propertyPath: _twoGrabTransformer
       value: 
       objectReference: {fileID: 3587599206697508160}
-    - target: {fileID: 2128199497352881985, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
-      propertyPath: _transferOnSecondSelection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3049061689264423720, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
-      propertyPath: _supportedGrabTypes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3049061689264423720, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
-      propertyPath: _interactorFilters.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3049061689264423720, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
       propertyPath: _interactorFilters.Array.data[0]
       value: 
@@ -128,10 +116,6 @@ PrefabInstance:
       propertyPath: _tagSetFilter
       value: 
       objectReference: {fileID: 2569436625668533243}
-    - target: {fileID: 5946684481794426538, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
-      propertyPath: _handGrabInteractable
-      value: 
-      objectReference: {fileID: 846838540858460325}
     - target: {fileID: 8800825384297358568, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
       propertyPath: m_Name
       value: PainPoint_v1.0
@@ -143,170 +127,29 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8800825384297358568, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2193988311766744788}
-    - targetCorrespondingSourceObject: {fileID: 1480862990990143211, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7991564521788979690}
-    - targetCorrespondingSourceObject: {fileID: 1480862990990143211, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3587599206697508160}
-    - targetCorrespondingSourceObject: {fileID: 1480862990990143211, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2569436625668533243}
   m_SourcePrefab: {fileID: 100100000, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
---- !u!114 &846838540858460325 stripped
+--- !u!114 &2569436625668533243 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3049061689264423720, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+  m_CorrespondingSourceObject: {fileID: 160047825851818102, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
   m_PrefabInstance: {fileID: 2418681872568634253}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827487191871530342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a7676b01585ce43908639a27765dfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &3827487191871530342 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1480862990990143211, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
-  m_PrefabInstance: {fileID: 2418681872568634253}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7991564521788979690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827487191871530342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb7085c111fcb44493d57d4e336d3fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _positionConstraints:
-    ConstraintsAreRelative: 0
-    XAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-    YAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-    ZAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-  _rotationConstraints:
-    XAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-    YAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-    ZAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-  _scaleConstraints:
-    ConstraintsAreRelative: 0
-    XAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 1
-        Max: 1
-    YAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 1
-        Max: 1
-    ZAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 1
-        Max: 1
---- !u!114 &3587599206697508160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827487191871530342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb7085c111fcb44493d57d4e336d3fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _positionConstraints:
-    ConstraintsAreRelative: 0
-    XAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-    YAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-    ZAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-  _rotationConstraints:
-    XAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-    YAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-    ZAxis:
-      ConstrainAxis: 0
-      AxisRange:
-        Min: 0
-        Max: 0
-  _scaleConstraints:
-    ConstraintsAreRelative: 1
-    XAxis:
-      ConstrainAxis: 1
-      AxisRange:
-        Min: 0
-        Max: 1
-    YAxis:
-      ConstrainAxis: 1
-      AxisRange:
-        Min: 0
-        Max: 1
-    ZAxis:
-      ConstrainAxis: 1
-      AxisRange:
-        Min: 0
-        Max: 1
---- !u!114 &2569436625668533243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827487191871530342}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75d3a1facc5f29d4ea65d3af68af5c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requireTags: []
-  _excludeTags: []
+--- !u!114 &3587599206697508160 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1178065279730374349, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+  m_PrefabInstance: {fileID: 2418681872568634253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb7085c111fcb44493d57d4e336d3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6607398955878297445 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8800825384297358568, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
@@ -325,6 +168,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minimumScale: 0.01
+--- !u!114 &7991564521788979690 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5726150790800339559, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+  m_PrefabInstance: {fileID: 2418681872568634253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb7085c111fcb44493d57d4e336d3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8292882141219261735 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5946684481794426538, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
