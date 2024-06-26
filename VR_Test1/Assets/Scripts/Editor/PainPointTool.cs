@@ -16,7 +16,6 @@ public class PainPointTool : EditorWindow
     private Button _button;
 
 
-
     [MenuItem("Splendide/Pain Point Tool")]
     public static void OpenWindow()
     {
