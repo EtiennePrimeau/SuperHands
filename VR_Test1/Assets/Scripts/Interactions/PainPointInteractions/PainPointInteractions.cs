@@ -31,7 +31,7 @@ public class PainPointInteractions : MonoBehaviour
         _tagSetFilter.InjectOptionalRequireTags(str);
     }
 
-    public void OnSelect()
+    public virtual void OnSelect()
     {
         //Debug.Log("OnSelect");
 
