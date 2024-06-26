@@ -9,7 +9,7 @@ using UnityEngine;
 
 using Oculus.Interaction;
 
-public class TransformerHypnose : MonoBehaviour, ITransformer
+public class SS_BaseTransformer : MonoBehaviour, ITransformer
 {
     private struct GrabPointDelta
     {
@@ -126,7 +126,7 @@ public class TransformerHypnose : MonoBehaviour, ITransformer
         _relativeScaleConstraints = TransformerUtils.GenerateParentConstraints(_scaleConstraints, _grabbable.Transform.localScale);
     }
 
-    public void BeginTransform()
+    public virtual void BeginTransform()
     {
         //Debug.Log("BeginTransform");
 
@@ -147,7 +147,7 @@ public class TransformerHypnose : MonoBehaviour, ITransformer
         _lastScale = transform.localScale;
     }
 
-    public void UpdateTransform()
+    public virtual void UpdateTransform()
     {
         //Debug.Log("UpdateTransform");
 
@@ -158,8 +158,6 @@ public class TransformerHypnose : MonoBehaviour, ITransformer
         //_lastScale = UpdateScale(count) * _lastScale;
         //transform.localScale = TransformerUtils.GetConstrainedTransformScale(_lastScale, _relativeScaleConstraints);
 
-        transform.localScale *= 0.99f;
-
         _lastRotation = UpdateRotation(count) * _lastRotation;
         Quaternion unconstrainedRotation = _lastRotation * _grabDeltaInLocalSpace.rotation;
         transform.rotation = TransformerUtils.GetConstrainedTransformRotation(unconstrainedRotation, _rotationConstraints, transform.parent);
@@ -167,7 +165,7 @@ public class TransformerHypnose : MonoBehaviour, ITransformer
         transform.position = TransformerUtils.GetConstrainedTransformPosition(unconstrainedPosition, _relativePositionConstraints, transform.parent);
     }
 
-    public void EndTransform()
+    public virtual void EndTransform()
     {
         //Debug.Log("EndTransform");
 

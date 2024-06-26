@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2128199497352881985, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+      propertyPath: _oneGrabTransformer
+      value: 
+      objectReference: {fileID: 5131126317182595410}
+    - target: {fileID: 2128199497352881985, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+      propertyPath: _twoGrabTransformer
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4550114630878741932, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50,10 +58,104 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8800825384297358568, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
       propertyPath: m_Name
-      value: PainPoint
+      value: PainPoint_v1.1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1178065279730374349, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+    - {fileID: 5726150790800339559, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8800825384297358568, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6752816278905766811}
+    - targetCorrespondingSourceObject: {fileID: 1480862990990143211, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5131126317182595410}
   m_SourcePrefab: {fileID: 100100000, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+--- !u!1 &3820911734834256008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8800825384297358568, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+  m_PrefabInstance: {fileID: 5702765442031041632}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6752816278905766811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3820911734834256008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563ce71bcc4d0cb468aa362691d85b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minimumScale: 0.005
+--- !u!1 &6604915877930291851 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1480862990990143211, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+  m_PrefabInstance: {fileID: 5702765442031041632}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5131126317182595410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604915877930291851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590342932cb39c14792963e6c37ac621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _positionConstraints:
+    ConstraintsAreRelative: 0
+    XAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+    YAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+    ZAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+  _rotationConstraints:
+    XAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+    YAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+    ZAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+  _scaleConstraints:
+    ConstraintsAreRelative: 0
+    XAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 1
+        Max: 1
+    YAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 1
+        Max: 1
+    ZAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 1
+        Max: 1
+  _shrinkSpeed: 0.99
