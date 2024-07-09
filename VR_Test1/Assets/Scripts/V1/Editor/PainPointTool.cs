@@ -70,26 +70,27 @@ public class PainPointTool : EditorWindow
         switch (_fingerEnumField.value)
         {
             case PainPositionsFinger.Index:
-                boneId = OVRSkeleton.BoneId.Hand_IndexTip;
+                boneId = OVRSkeleton.BoneId.Hand_Index2;
                 break;
             case PainPositionsFinger.Middle:
-                boneId = OVRSkeleton.BoneId.Hand_MiddleTip;
+                boneId = OVRSkeleton.BoneId.Hand_Middle2;
                 break;
             case PainPositionsFinger.Ring:
-                boneId = OVRSkeleton.BoneId.Hand_RingTip;
+                boneId = OVRSkeleton.BoneId.Hand_Ring2;
                 break;
             case PainPositionsFinger.Pinky:
-                boneId = OVRSkeleton.BoneId.Hand_PinkyTip;
+                boneId = OVRSkeleton.BoneId.Hand_Pinky2;
                 break;
             case PainPositionsFinger.Thumb:
-                boneId = OVRSkeleton.BoneId.Hand_ThumbTip;
+                boneId = OVRSkeleton.BoneId.Hand_Thumb2;
                 break;
             default:
                 boneId = OVRSkeleton.BoneId.Invalid;
                 break;
         }
 
-        PainPointToolManager.Instance.SpawnPainPoint(hand, boneId);
+        //PainPointToolManager.Instance.SpawnPainPoint(hand, boneId);
+        PainPointToolSpawner.Instance.SpawnPainPoint(hand, boneId);
         
     }
 }

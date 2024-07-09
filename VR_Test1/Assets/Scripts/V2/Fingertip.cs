@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fingertip : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private OVRSkeleton.SkeletonType _hand;
+    [SerializeField] private OVRSkeleton.BoneId _boneId;
+
+    public OVRSkeleton.SkeletonType Hand { get { return _hand; } }
+    public OVRSkeleton.BoneId BoneId { get { return _boneId; } }
+
+
 }

@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 1321804424520232450}
   - component: {fileID: 5401373171294468714}
   - component: {fileID: 4313975310543899063}
-  - component: {fileID: 2600615958794016557}
+  - component: {fileID: 3449290512737938588}
   m_Layer: 0
   m_Name: OVR_Rig_v2
   m_TagString: Untagged
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   resetHmdPoseByMiddleMouseButton: 1
   activateKeys: 3201000031010000
   pitchKeys: 3401000033010000
---- !u!114 &2600615958794016557
+--- !u!114 &3449290512737938588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1068,15 +1068,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2099838740036924658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4cb98b5c361ce6469e90ef445a0872d, type: 3}
+  m_Script: {fileID: 11500000, guid: 241a85986ce745245b363ab3124003ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rightHand: {fileID: 6994002314959375986}
   _leftHand: {fileID: 7922227510840433678}
   _rightSkeleton: {fileID: 6746844382660741231}
   _leftSkeleton: {fileID: 3676504223852767266}
-  _leftHandGrabInteractor: {fileID: 0}
-  _rightHandGrabInteractor: {fileID: 0}
   _painPointPrefab: {fileID: 6607398955878297445, guid: f32ff0c7d66aaab48be2ebc194539579, type: 3}
 --- !u!1 &2190760959958920325
 GameObject:
