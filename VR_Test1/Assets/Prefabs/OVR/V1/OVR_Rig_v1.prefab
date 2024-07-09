@@ -5130,7 +5130,7 @@ GameObject:
   - component: {fileID: 7105916636311031556}
   - component: {fileID: 3820120483470953886}
   m_Layer: 0
-  m_Name: OVR_Rig
+  m_Name: OVR_Rig_v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

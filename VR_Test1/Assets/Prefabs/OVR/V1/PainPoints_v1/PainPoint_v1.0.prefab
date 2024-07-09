@@ -17,6 +17,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3587599206697508160}
     - target: {fileID: 3049061689264423720, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
+      propertyPath: _supportedGrabTypes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049061689264423720, guid: db001a8a55d62f6468fa42329ed2c817, type: 3}
       propertyPath: _interactorFilters.Array.data[0]
       value: 
       objectReference: {fileID: 2569436625668533243}
