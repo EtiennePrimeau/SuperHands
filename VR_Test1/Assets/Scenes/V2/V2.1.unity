@@ -220,34 +220,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b724ce2dba6ceca4d96ade383ed61e61, type: 3}
---- !u!1 &167898783 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 680854790120429704, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-  m_PrefabInstance: {fileID: 385494418}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &167898785
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 167898783}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.01
-  m_Height: 0.038772326
-  m_Direction: 0
-  m_Center: {x: -0.004488248, y: 5.358187e-11, z: 7.10183e-12}
 --- !u!1001 &385494418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -256,42 +228,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 119237134505417152, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _hand
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 119237134505417152, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _boneId
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 508632337873815061, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _boneId
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 1264429592037075743, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _boneId
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1290222151625447053, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _boneId
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1578814113142342201, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _boneId
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2099838740036924658, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
       propertyPath: m_Name
       value: OVR_Rig_v2
       objectReference: {fileID: 0}
-    - target: {fileID: 2855432708914417744, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _boneId
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3449290512737938588, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _painPointPrefab
-      value: 
-      objectReference: {fileID: 8456326013662253779, guid: ff888e5bc5e9b96458458406b5ee3a16, type: 3}
     - target: {fileID: 5980010838911501930, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -332,45 +272,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6559970979841717900, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _hand
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6559970979841717900, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _boneId
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799370050425452341, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _hand
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799370050425452341, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _boneId
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 8283018185400290264, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _hand
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8283018185400290264, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _boneId
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8338595028989394070, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _hand
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8338595028989394070, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      propertyPath: _boneId
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 680854790120429704, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 167898785}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
 --- !u!1 &1084218648
 GameObject:

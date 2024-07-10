@@ -73,7 +73,7 @@ public class PainPointToolSpawner : MonoBehaviour
             {
                 var go = Instantiate(_painPointPrefab, bone.Transform);
                 //go.GetComponent<PainPointInteractions>().Init(hand);
-                go.GetComponent<PainPointV2_1>().Init(hand, boneId);
+                go.GetComponent<PainPointV2_1>().Init(hand, boneId, bone.Transform);
             }
         }
     }
