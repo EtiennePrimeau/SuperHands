@@ -1,0 +1,31 @@
+PROJET SUPER MAINS
+
+--------------------
+
+v1 :
+
+- Le pain point peut être saisi par l'autre main de celle à laquelle il se rattache.
+- Il peut uniquement être saisi par un pinch (pouce et index).
+- Une fois détaché de son ancrage, il peut être manipulé autant qu'on le veut par chacune des mains.
+- Une fois réduit assez petit, le pain point est détruit.
+
+v1.0 :
+
+- Il peut aussi être saisi par les deux mains en même temps pour pouvoir réduire sa taille (impossible de l'agrandir).
+
+v1.1 :
+
+- Lorsque le pain point est saisi par une main, sa taille réduit graduellement.
+
+--------------------
+
+v2 :
+
+La v2 est le début de la version plus custom de SuperMains. 
+Le rig et les components Oculus sont réduits au minimum. L'idée est plutôt de travailler avec des colliders et de la physique pour faire nos propres logiques.
+
+v2.1 :
+
+- Les doigts ont des colliders rigides à chaque extrémité. 
+- La manipulation possible est simplement la collision entre les colliders du painPoint et des Fingertips.
+- Les painPoints spawnent un empty avec un trigger. OnTriggerExit, le painPoint va se détacher du doigt auquel il se rattachait.
