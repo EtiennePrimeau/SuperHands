@@ -248,7 +248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &89106201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,7 +799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &1368273787
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1484,6 +1484,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5980010838911501930, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517754561238460068, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0039
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517754561238460068, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0012
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517754561238460068, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0011
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816896870399241772, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
+      propertyPath: m_Height
+      value: 0.033351906
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816896870399241772, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
+      propertyPath: m_Radius
+      value: 0.010964492
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816896870399241772, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816896870399241772, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816896870399241772, guid: 40ccac73a912ec549bd96f59ce0f9557, type: 3}
+      propertyPath: m_Center.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

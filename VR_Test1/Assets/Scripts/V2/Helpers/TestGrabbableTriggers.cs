@@ -1,15 +1,19 @@
+using Oculus.Interaction;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestGrabbable : MonoBehaviour
+public class TestGrabbableTriggers : MonoBehaviour
 {
-
     private bool _isGrabbed = false;
     private Vector3 _startPos;
 
     private List<Fingertip> _attachedFingertips = new List<Fingertip>();
     private FixedJoint _fixedJoint;
     private Rigidbody _rb;
+
+    private bool _releaseTimerOn = false;
+    private float _releaseTimer = 0f;
 
     private void Start()
     {
@@ -19,7 +23,7 @@ public class TestGrabbable : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             transform.position = _startPos;
         }
@@ -29,23 +33,33 @@ public class TestGrabbable : MonoBehaviour
     private void FixedUpdate()
     {
         CheckForGrab();
-        
+
+        if (_releaseTimerOn)
+        {
+            _releaseTimer += Time.fixedDeltaTime;
+        }
+        else
+        {
+            _releaseTimer = 0f;
+        }
+            
+
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Fingertip fingertip = collision.gameObject.GetComponent<Fingertip>();
+        Fingertip fingertip = other.gameObject.GetComponent<Fingertip>();
         if (fingertip == null)
             return;
-
+    
         FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
         _attachedFingertips.Add(fingertip);
     }
 
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        Fingertip fingertip = collision.gameObject.GetComponent<Fingertip>();
+        Fingertip fingertip = other.gameObject.GetComponent<Fingertip>();
         if (fingertip == null)
             return;
 
@@ -55,7 +69,7 @@ public class TestGrabbable : MonoBehaviour
 
 
     private void CheckForGrab()
-    {        
+    {
         if (_attachedFingertips.Count < 2)
         {
             CheckForRelease();
@@ -80,13 +94,14 @@ public class TestGrabbable : MonoBehaviour
 
         if (_isGrabbed)
         {
+            _releaseTimerOn = false;
             return;
         }
 
         DebugLogManager.Instance.PrintLog("grabbing");
 
-        //_fixedJoint = thumb.gameObject.AddComponent<FixedJoint>();
         _fixedJoint = _attachedFingertips[0].gameObject.AddComponent<FixedJoint>();
+        //_fixedJoint = thumb.gameObject.AddComponent<FixedJoint>();
         _fixedJoint.connectedBody = _rb;
         _isGrabbed = true;
     }
@@ -96,9 +111,17 @@ public class TestGrabbable : MonoBehaviour
         if (!_isGrabbed)
             return;
 
+        _releaseTimerOn = true;
+        if (_releaseTimer < 0.5f)
+        {
+            DebugLogManager.Instance.PrintLog("waiting for releasing");
+            return;
+        }
+
         DebugLogManager.Instance.PrintLog("releasing");
 
         Destroy(_fixedJoint);
         _isGrabbed = false;
+        _releaseTimerOn = false;
     }
 }
