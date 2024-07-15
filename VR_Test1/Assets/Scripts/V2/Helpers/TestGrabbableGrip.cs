@@ -1,9 +1,8 @@
-using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestGrabbableFullTrigger : MonoBehaviour
+public class TestGrabbableGrip : MonoBehaviour
 {
     private bool _isGrabbed = false;
 
@@ -21,7 +20,57 @@ public class TestGrabbableFullTrigger : MonoBehaviour
     {
         //DebugLogManager.Instance.PrintLog(_attachedFingertips.Count.ToString());
 
-        CheckForGrab();
+        //CheckForGrab();
+
+        bool tryingToGrab = false;
+        bool tryingToRelease = false;
+
+        Fingertip thumb = null;
+        foreach (var fingertip in _attachedFingertips)
+        {
+            if (fingertip.BoneId == OVRSkeleton.BoneId.Hand_ThumbTip)
+            {
+                thumb = fingertip;
+            }
+
+            if (fingertip.IsGrabbing)
+            {
+                tryingToGrab = true;
+            }
+            if (fingertip.IsReleasing)
+            {
+                tryingToRelease = true;
+            }
+        }
+
+        if (thumb == null)
+        {
+            tryingToRelease = true;
+        }
+
+        if (!_isGrabbed && tryingToGrab)
+        {
+            if (thumb != null)
+            {
+                DebugLogManager.Instance.PrintLog("grabbing");
+
+                _fixedJoint = thumb.FixedJoint;
+                thumb.FixedJoint.connectedBody = _rb;
+                _isGrabbed = true;
+                return;
+            }
+        }
+
+        if (_isGrabbed && tryingToRelease)
+        {
+            DebugLogManager.Instance.PrintLog("releasing");
+
+            _fixedJoint.connectedBody = null;
+            _fixedJoint = null;
+
+            _isGrabbed = false;
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,14 +82,14 @@ public class TestGrabbableFullTrigger : MonoBehaviour
         if (!_attachedFingertips.Contains(fingertip))
         {
             _attachedFingertips.Add(fingertip);
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
-            Debug.Log(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " Enter");
+            //FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
+            //Debug.Log(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " Enter");
             //DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " Enter");
 
         }
         else
         {
-            Debug.Log(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " already in the list");
+            //Debug.Log(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " already in the list");
         }
 
     }
@@ -51,18 +100,16 @@ public class TestGrabbableFullTrigger : MonoBehaviour
         if (fingertip == null)
             return;
 
-        Debug.Log("OnTrigger: Fingertip is " + OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId));
-
         if (_attachedFingertips.Remove(fingertip))
         {
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
-            Debug.Log(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " Exit");
+            //FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
+            //Debug.Log(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " Exit");
             //DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " Exit");
 
         }
         else
         {
-            Debug.Log(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " not removed");
+            //Debug.Log(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " not removed");
         }
 
     }
@@ -100,11 +147,7 @@ public class TestGrabbableFullTrigger : MonoBehaviour
 
         DebugLogManager.Instance.PrintLog("grabbing");
 
-        //_fixedJoint = _attachedFingertips[0].gameObject.AddComponent<FixedJoint>();
-        //_fixedJoint.connectedBody = _rb;
-
         _fixedJoint = thumb.FixedJoint;
-        //transform.position = _fixedJoint.transform.position; // used for snapping
         thumb.FixedJoint.connectedBody = _rb;
         _isGrabbed = true;
     }
@@ -115,8 +158,6 @@ public class TestGrabbableFullTrigger : MonoBehaviour
             return;
 
         DebugLogManager.Instance.PrintLog("releasing");
-
-        //Destroy(_fixedJoint);
 
         _fixedJoint.connectedBody = null;
         _fixedJoint = null;
