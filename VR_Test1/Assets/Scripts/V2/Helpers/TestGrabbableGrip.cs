@@ -57,6 +57,7 @@ public class TestGrabbableGrip : MonoBehaviour
                 _fixedJoint = thumb.FixedJoint;
                 thumb.FixedJoint.connectedBody = _rb;
                 _isGrabbed = true;
+
                 return;
             }
         }
