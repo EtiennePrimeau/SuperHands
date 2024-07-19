@@ -4,11 +4,16 @@ public class GrabbableObject : MonoBehaviour
 {
     private FixedJoint _attachedFixedJoint;
     private Rigidbody _rb;
-
+    private Vector3 _previousPos;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+    }
+
+    private void FixedUpdate()
+    {
+        _previousPos = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,7 +46,11 @@ public class GrabbableObject : MonoBehaviour
     {
         //DebugLogManager.Instance.PrintLog(gameObject.name + " is detaching");
 
+        Vector3 velocity = (transform.position - _previousPos) / Time.fixedDeltaTime;
+
         _attachedFixedJoint.connectedBody = null;
         _attachedFixedJoint = null;
+
+        _rb.velocity = velocity;
     }
 }
