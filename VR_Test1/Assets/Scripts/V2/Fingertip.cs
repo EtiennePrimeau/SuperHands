@@ -7,6 +7,7 @@ public class Fingertip : MonoBehaviour
     [SerializeField] private OVRSkeleton.BoneId _boneId;
     [SerializeField] private FixedJoint _fixedJoint;
     [SerializeField] private Transform _palmPoint;
+    [SerializeField] private GameObject _boneCollider;
 
     public OVRSkeleton.SkeletonType Hand { get { return _hand; } }
     public OVRSkeleton.BoneId BoneId { get { return _boneId; } }
@@ -64,5 +65,13 @@ public class Fingertip : MonoBehaviour
         }
 
 
+    }
+
+    public void ToggleBoneCollider(bool value)
+    {
+        if(_boneCollider == null)
+            return;
+
+        _boneCollider.SetActive(value);
     }
 }
