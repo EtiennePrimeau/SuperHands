@@ -70,18 +70,18 @@ public class GrabInteraction : MonoBehaviour
     {
         _isGrabbing = false;
         
-        ToggleBoneColliders(true);
         foreach (var grabbed in _grabbedObjects)
         {
             grabbed.Detach();
 
             //DebugLogManager.Instance.PrintLog(grabbed.gameObject.name + " is trying to detach");
         }
+        ToggleBoneColliders(true);
     }
 
     private void ToggleBoneColliders(bool value)
     {
-        DebugLogManager.Instance.PrintLog("Toggling Bone Colliders : " + value);
+        //DebugLogManager.Instance.PrintLog("Toggling Bone Colliders : " + value);
 
         foreach (var fingertip in _fingertips)
         {

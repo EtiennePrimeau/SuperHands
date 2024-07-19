@@ -49,7 +49,6 @@ public class GrabbableObject : MonoBehaviour
         Vector3 velocity = (transform.position - _previousPos) / Time.fixedDeltaTime;
         DebugLogManager.Instance.PrintLog(velocity.ToString());
 
-
         _attachedFixedJoint.connectedBody = null;
         _attachedFixedJoint = null;
 

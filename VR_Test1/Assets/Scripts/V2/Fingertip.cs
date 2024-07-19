@@ -6,7 +6,7 @@ public class Fingertip : MonoBehaviour
     [SerializeField] private OVRSkeleton.SkeletonType _hand;
     [SerializeField] private OVRSkeleton.BoneId _boneId;
     [SerializeField] private FixedJoint _fixedJoint;
-    [SerializeField] private Transform _palmPoint;
+    [SerializeField] private Transform _grabPoint;
     [SerializeField] private GameObject _boneCollider;
 
     public OVRSkeleton.SkeletonType Hand { get { return _hand; } }
@@ -28,6 +28,12 @@ public class Fingertip : MonoBehaviour
     private void FixedUpdate()
     {
         CalculateMovement();
+
+    }
+
+    private void Update()
+    {
+        //Debug.DrawLine(transform.position, _grabPoint.transform.position, Color.magenta);
     }
 
     private void CalculateMovement()
@@ -36,7 +42,7 @@ public class Fingertip : MonoBehaviour
         _isReleasing = false;
         
         // Calculate absolute distance between fingertip and center of hand (palm)
-        float distance = Vector3.Distance(transform.position, _palmPoint.position);
+        float distance = Vector3.Distance(transform.position, _grabPoint.position);
         float frameDistance = Mathf.Abs(_previousDistance - distance);
 
         // Checks if finger is moving towards palm (aka closing)
@@ -46,7 +52,10 @@ public class Fingertip : MonoBehaviour
         _previousDistance = distance;
 
         // Ratio is the % of movement in a frame for the full range potential (finger-palm)
-        float ratio = frameDistance / RANGE * 100f;
+        float range = Mathf.Max(distance, MIN_DIST);
+        float ratio = frameDistance / range * 100f;
+        //float ratio = frameDistance / RANGE * 100f;
+
         if (ratio > THRESHOLD)
         {
             if (isClosing)
