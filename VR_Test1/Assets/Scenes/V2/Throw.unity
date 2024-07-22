@@ -423,6 +423,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1660393375 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5459069250317778698, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
+  m_PrefabInstance: {fileID: 2057949361388770287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1805058443
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,10 +693,42 @@ PrefabInstance:
       propertyPath: _grabPoint
       value: 
       objectReference: {fileID: 2014535598}
+    - target: {fileID: 1329567029405369024, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
+      propertyPath: _grabPoint
+      value: 
+      objectReference: {fileID: 1660393375}
+    - target: {fileID: 1660450285715776817, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
+      propertyPath: _grabPoint
+      value: 
+      objectReference: {fileID: 1660393375}
     - target: {fileID: 3135076845626753292, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
       propertyPath: _palmCollider
       value: 
       objectReference: {fileID: 440209228}
+    - target: {fileID: 3269351225913470753, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0698
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269351225913470753, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0394
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374650661007995385, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
+      propertyPath: _grabPoint
+      value: 
+      objectReference: {fileID: 1660393375}
+    - target: {fileID: 4014089027958559623, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038254675962641618, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972814454157705765, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
+      propertyPath: _grabPoint
+      value: 
+      objectReference: {fileID: 1660393375}
     - target: {fileID: 5644296863361269401, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -744,6 +781,10 @@ PrefabInstance:
       propertyPath: _grabPoint
       value: 
       objectReference: {fileID: 2014535598}
+    - target: {fileID: 8627785439832878684, guid: 7cf280d85191da34a9ef53a0aaaea986, type: 3}
+      propertyPath: _grabPoint
+      value: 
+      objectReference: {fileID: 1660393375}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
