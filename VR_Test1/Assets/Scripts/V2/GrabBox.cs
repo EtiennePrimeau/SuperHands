@@ -8,15 +8,10 @@ public class GrabBox : MonoBehaviour
     public List<GrabbableObject> RegisteredGrabbables { get { return _registeredGrabbables; } }
 
     private GrabbableObject _closestGrabbable;
+    public GrabbableObject ClosestGrabbable { get { return _closestGrabbable; } }
 
     private void FixedUpdate()
     {
-        //if (_registeredGrabbables.Count == 0)
-        //    return;
-
-        //DebugLogManager.Instance.PrintLog(_registeredGrabbables.Count.ToString());
-
-
         HighlightClosestGrabbable();
     }
 

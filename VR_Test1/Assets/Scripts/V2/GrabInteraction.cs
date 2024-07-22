@@ -22,6 +22,7 @@ public class GrabInteraction : MonoBehaviour
             {
                 if (fingertip.IsGrabbing)
                 {
+                    //MultiGrab();
                     Grab();
                     return;
                 }
@@ -34,8 +35,6 @@ public class GrabInteraction : MonoBehaviour
             {
                 if (fingertip.IsReleasing)
                 {
-                    //DebugLogManager.Instance.PrintLog(fingertip.gameObject.name + " is releasing");
-                    
                     Release();
                     return;
                 }
@@ -44,6 +43,25 @@ public class GrabInteraction : MonoBehaviour
     }
 
     private void Grab()
+    {
+        GrabbableObject grabbable = _grabBox.ClosestGrabbable;
+        if (grabbable == null)
+            return;
+        if (grabbable.IsAttached)
+            return;
+
+
+        _isGrabbing = true;
+
+        ToggleBoneColliders(false);
+
+        grabbable.Attach(_fixedJoint);
+
+        _grabbedObjects.Clear();
+        _grabbedObjects.Add(grabbable);
+    }
+
+    private void MultiGrab()
     {
         if (_grabBox.RegisteredGrabbables.Count == 0)
             return;

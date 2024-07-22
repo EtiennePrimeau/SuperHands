@@ -7,6 +7,9 @@ public class GrabbableObject : MonoBehaviour
     private Vector3 _previousPos;
     private Vector3 _velocity;
     private Material _material;
+    private bool _isAttached = false;
+
+    public bool IsAttached { get { return _isAttached; } }
 
     private Vector3 _startPos; // for debugging/resetting pos
 
@@ -54,6 +57,7 @@ public class GrabbableObject : MonoBehaviour
     public void Attach(FixedJoint fixedJoint)
     {
         //DebugLogManager.Instance.PrintLog(gameObject.name + " is attaching");
+        _isAttached = true;
 
         _attachedFixedJoint = fixedJoint;
         _attachedFixedJoint.connectedBody = _rb;
@@ -62,10 +66,9 @@ public class GrabbableObject : MonoBehaviour
     public void Detach()
     {
         //DebugLogManager.Instance.PrintLog(gameObject.name + " is detaching");
+        _isAttached = false;
 
-        //Vector3 velocity = (transform.position - _previousPos) / Time.fixedDeltaTime;
-        DebugLogManager.Instance.PrintLog(_velocity.ToString());
-
+        //DebugLogManager.Instance.PrintLog(_velocity.ToString());
         _attachedFixedJoint.connectedBody = null;
         _attachedFixedJoint = null;
 
