@@ -25,10 +25,18 @@ public class Fingertip : MonoBehaviour
     private bool _isGrabbing = false;
     private bool _isReleasing = false;
 
+
+    //For velocity version
+    private Vector3 _previousPosition;
+    private Vector3 _velocity;
+    private float _velocityMaxMagnitude = 0;
+
+
+
     private void FixedUpdate()
     {
         CalculateMovement();
-
+        //CalculateVelocity();
     }
 
     private void Update()
@@ -73,6 +81,36 @@ public class Fingertip : MonoBehaviour
             }
         }
 
+
+    }
+
+    private void CalculateVelocity()
+    {
+        _velocity = (transform.position - _previousPosition) / Time.fixedDeltaTime;
+        _previousPosition = transform.position;
+
+        Vector3 grabPointDirection = _grabPoint.transform.position - transform.position;
+
+        float dotProduct = Vector3.Dot(grabPointDirection.normalized, _velocity.normalized);
+
+        if (Hand == OVRSkeleton.SkeletonType.HandLeft && BoneId == OVRSkeleton.BoneId.Hand_IndexTip)
+        {
+            //DebugLogManager.Instance.PrintLog(dotProduct.ToString());
+            DebugLogManager.Instance.PrintLog(_velocity.magnitude.ToString());
+        }
+
+        if (_velocity.magnitude > _velocityMaxMagnitude)
+        {
+            _velocityMaxMagnitude = _velocity.magnitude;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (Hand == OVRSkeleton.SkeletonType.HandLeft && BoneId == OVRSkeleton.BoneId.Hand_IndexTip)
+        {
+            Debug.Log("Max velocity : " + _velocityMaxMagnitude);
+        }
 
     }
 
