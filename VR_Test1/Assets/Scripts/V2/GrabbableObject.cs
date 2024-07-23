@@ -31,8 +31,7 @@ public class GrabbableObject : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            transform.position = _startPos;
-            _rb.velocity = Vector3.zero;
+            ResetPositionAndVelocity();
         }
     }
 
@@ -91,5 +90,11 @@ public class GrabbableObject : MonoBehaviour
         Color color = _material.color;
         color.a = 1f;
         _material.color = color;
+    }
+
+    public void ResetPositionAndVelocity()
+    {
+        transform.position = _startPos;
+        _rb.velocity = Vector3.zero;
     }
 }
