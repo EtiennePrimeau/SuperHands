@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 2855773280102791328}
   - component: {fileID: 5088989173424641502}
   - component: {fileID: 1502923250479743924}
+  - component: {fileID: 2251118109061886231}
   m_Layer: 0
   m_Name: Fingertip
   m_TagString: Untagged
@@ -155,5 +156,20 @@ MonoBehaviour:
   _hand: -1
   _boneId: -1
   _fixedJoint: {fileID: 0}
-  _palmPoint: {fileID: 0}
+  _grabPoint: {fileID: 0}
   _boneCollider: {fileID: 2830721577899349056}
+--- !u!138 &2251118109061886231
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280462879745606927}
+  m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1

@@ -7,6 +7,7 @@ public class GrabbableObject : MonoBehaviour
     private Vector3 _previousPos;
     private Vector3 _velocity;
     private Material _material;
+    private Color _originalColor;
     private bool _isAttached = false;
 
     public bool IsAttached { get { return _isAttached; } }
@@ -17,6 +18,7 @@ public class GrabbableObject : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _material = GetComponent<MeshRenderer>().material;
+        _originalColor = _material.color;
 
         _startPos = transform.position;
     }
@@ -78,18 +80,22 @@ public class GrabbableObject : MonoBehaviour
     {
         //DebugLogManager.Instance.PrintLog("Highlighting");
 
-        Color color = _material.color;
-        color.a = 0.1f;
-        _material.color = color;
+        //Color color = _material.color;
+        //color.a = 0.1f;
+        //_material.color = color;
+
+        _material.color = Color.gray;
     }
 
     public void StopHighlight()
     {
         //DebugLogManager.Instance.PrintLog("stopping highlight");
 
-        Color color = _material.color;
-        color.a = 1f;
-        _material.color = color;
+        //Color color = _material.color;
+        //color.a = 1f;
+        //_material.color = color;
+
+        _material.color = _originalColor;
     }
 
     public void ResetPositionAndVelocity()

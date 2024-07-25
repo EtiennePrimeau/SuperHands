@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &463329868 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5459069250317778698, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-  m_PrefabInstance: {fileID: 1388861566}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &564757194
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,74 +574,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 171699805521562701, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _grabPoint
-      value: 
-      objectReference: {fileID: 2041359548}
-    - target: {fileID: 171699805521562701, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _palmPoint
-      value: 
-      objectReference: {fileID: 2041359548}
     - target: {fileID: 651466595105596938, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
       propertyPath: m_Name
       value: OVR_Rig_v3
       objectReference: {fileID: 0}
-    - target: {fileID: 1821818999363862264, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _grabPoint
-      value: 
-      objectReference: {fileID: 2041359548}
-    - target: {fileID: 1905119511165337425, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _grabPoint
-      value: 
-      objectReference: {fileID: 2041359548}
-    - target: {fileID: 3004764317664411873, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _grabPoint
-      value: 
-      objectReference: {fileID: 463329868}
-    - target: {fileID: 3269351225913470753, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0554
-      objectReference: {fileID: 0}
-    - target: {fileID: 3269351225913470753, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0486
-      objectReference: {fileID: 0}
-    - target: {fileID: 3269351225913470753, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3588971633761590526, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _grabPoint
-      value: 
-      objectReference: {fileID: 463329868}
-    - target: {fileID: 3620021106942436713, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _grabPoint
-      value: 
-      objectReference: {fileID: 2041359548}
-    - target: {fileID: 3686231033557725381, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5150265906285012659, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _grabPoint
-      value: 
-      objectReference: {fileID: 463329868}
-    - target: {fileID: 5459069250317778698, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0554
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459069250317778698, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0486
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459069250317778698, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628031200543977930, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _grabPoint
-      value: 
-      objectReference: {fileID: 463329868}
     - target: {fileID: 5644296863361269401, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -687,28 +618,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7780787867045301197, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _grabPoint
-      value: 
-      objectReference: {fileID: 463329868}
-    - target: {fileID: 8523547236547345958, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _grabPoint
-      value: 
-      objectReference: {fileID: 2041359548}
-    - target: {fileID: 8523547236547345958, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-      propertyPath: _palmPoint
-      value: 
-      objectReference: {fileID: 2041359548}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
---- !u!4 &2041359548 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3269351225913470753, guid: 98c189b63c6b8a1499baaba5329627b4, type: 3}
-  m_PrefabInstance: {fileID: 1388861566}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

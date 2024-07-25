@@ -1509,7 +1509,7 @@ Transform:
   m_GameObject: {fileID: 2392783771471013343}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0545, y: 0.036, z: -0.0005}
+  m_LocalPosition: {x: -0.0554, y: 0.0486, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1994,6 +1994,7 @@ MonoBehaviour:
   _grabBox: {fileID: 2324441689378239254}
   _fixedJoint: {fileID: 7523138957173303212}
   _palmCollider: {fileID: 8189253063044752275}
+  _colliderReactivationDelay: 0.5
 --- !u!1 &3226336825979115283
 GameObject:
   m_ObjectHideFlags: 0
@@ -3310,7 +3311,7 @@ Transform:
   m_GameObject: {fileID: 6129131645223376215}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0545, y: -0.036, z: 0.0005}
+  m_LocalPosition: {x: 0.0554, y: -0.0486, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4442,6 +4443,7 @@ MonoBehaviour:
   _grabBox: {fileID: 8302401610078056598}
   _fixedJoint: {fileID: 8693266691580965293}
   _palmCollider: {fileID: 1940931656227302824}
+  _colliderReactivationDelay: 0.5
 --- !u!1 &7690753269199529461
 GameObject:
   m_ObjectHideFlags: 0

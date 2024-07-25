@@ -7,11 +7,32 @@ public class GrabInteraction : MonoBehaviour
     [SerializeField] private GrabBox _grabBox;
     [SerializeField] private FixedJoint _fixedJoint;
     [SerializeField] private GameObject _palmCollider;
+    [SerializeField] private float _colliderReactivationDelay = 0.5f;
 
     private List<GrabbableObject> _grabbedObjects = new List<GrabbableObject>();
 
     private bool _isGrabbing = false;
+    private bool _isReactivatingColliders = false;
+    private float _colliderTimer = 0f;
 
+    private void Update()
+    {
+        HandleColliderTimer();  
+    }
+
+    private void HandleColliderTimer()
+    {
+        if (_isReactivatingColliders)
+        {
+            _colliderTimer += Time.deltaTime;
+            if (_colliderTimer > _colliderReactivationDelay)
+            {
+                ToggleBoneColliders(true);
+                _colliderTimer = 0f;
+                _isReactivatingColliders = false;
+            }
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -94,12 +115,14 @@ public class GrabInteraction : MonoBehaviour
 
             //DebugLogManager.Instance.PrintLog(grabbed.gameObject.name + " is trying to detach");
         }
-        ToggleBoneColliders(true);
+        //ToggleBoneColliders(true);
+        _isReactivatingColliders = true;
+        DebugLogManager.Instance.PrintLog("reactivating colliders");
     }
 
     private void ToggleBoneColliders(bool value)
     {
-        //DebugLogManager.Instance.PrintLog("Toggling Bone Colliders : " + value);
+        DebugLogManager.Instance.PrintLog("Toggling Bone Colliders : " + value);
 
         foreach (var fingertip in _fingertips)
         {
