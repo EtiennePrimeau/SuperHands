@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TakeableObject : MonoBehaviour
 {
+    [SerializeField] private float _forceMultiplier;
+    
     private Rigidbody _rb;
     
     private List<Fingertip> _attachedFingertips = new List<Fingertip>();
@@ -11,20 +13,32 @@ public class TakeableObject : MonoBehaviour
     private bool _hasThumbAttached = false;
     private FixedJoint _fixedJoint;
     private HandVelocity _handVelocity;
+    private Vector3 _startPos;
 
     private bool _isGrabbed = false;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _startPos = transform.position;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            transform.position = _startPos;
+            _rb.velocity = Vector3.zero;
+        }
     }
 
     private void FixedUpdate()
     {
         if (_isGrabbed)
         {
-            _rb.velocity = _handVelocity.Velocity;
-            DebugLogManager.Instance.PrintLog("obj : " + _rb.velocity);
+            //_rb.velocity = _handVelocity.Velocity;
+            //DebugLogManager.Instance.PrintLog("obj : " + _rb.velocity);
+
 
         }
         
@@ -41,28 +55,12 @@ public class TakeableObject : MonoBehaviour
             return;
         }
 
-
-
-        //if (_isGrabbed)
-        //{
-        //    foreach (var finger in _attachedFingertips)
-        //    {
-        //        if (finger.IsReleasing)
-        //        {
-        //            _fixedJoint.connectedBody = null;
-        //            _fixedJoint = null;
-        //            _isGrabbed = false;
-        //            DebugLogManager.Instance.PrintLog("releasing");
-        //            return;
-        //        }
-        //    }
-        //}
-
         if (!_isGrabbed)
         {
             _fixedJoint = _attachedFingertips[0].FixedJoint;
+            _fixedJoint.anchor = _fixedJoint.transform.position;
             _fixedJoint.connectedBody = _rb;
-            _handVelocity = _fixedJoint.gameObject.GetComponent<HandVelocity>();
+            //_handVelocity = _fixedJoint.gameObject.GetComponent<HandVelocity>();
             _isGrabbed = true;
         }
 

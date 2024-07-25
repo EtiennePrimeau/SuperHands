@@ -12,6 +12,6 @@ public class HandVelocity : MonoBehaviour
     {
         _velocity = (transform.position - _previousPosition) / Time.fixedDeltaTime;
         _previousPosition = transform.position;
-        DebugLogManager.Instance.PrintLog("hand : " + _velocity);
+        //DebugLogManager.Instance.PrintLog("hand : " + _velocity);
     }
 }
