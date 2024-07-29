@@ -20,6 +20,9 @@ public class TakeableObject : MonoBehaviour
     private Vector3 _velocity;
     private Vector3 _previousPosition;
 
+    public List<Fingertip> AttachedFingertips {  get { return _attachedFingertips; } }
+    public bool HasThumb {  get { return _hasThumbAttached; } }
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
