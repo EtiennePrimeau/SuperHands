@@ -117,7 +117,7 @@ public class GrabInteraction : MonoBehaviour
         }
         //ToggleBoneColliders(true);
         _isReactivatingColliders = true;
-        DebugLogManager.Instance.PrintLog("reactivating colliders");
+        //DebugLogManager.Instance.PrintLog("reactivating colliders");
     }
 
     private void ToggleBoneColliders(bool value)

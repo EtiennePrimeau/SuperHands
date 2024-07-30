@@ -687,19 +687,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1365237157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a1e90f95faf35d43a8d5c8e2e160ac4, type: 3}
+  m_Script: {fileID: 11500000, guid: c7046c248df5f72449e5c7e219dd75e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 0}
-  _attachedFingertips: []
-  _hasThumbAttached: 0
-  _fixedJoint: {fileID: 0}
-  _startPos: {x: 0, y: 0, z: 0}
-  _isGrabbed: 0
-  _releaseTimer: 0
-  _releaseTimerOn: 0
-  _velocity: {x: 0, y: 0, z: 0}
-  _previousPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &91809311757518339
 Rigidbody:
   m_ObjectHideFlags: 0

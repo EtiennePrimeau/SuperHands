@@ -12,7 +12,7 @@ public class TakeableObject : MonoBehaviour
     private FixedJoint _fixedJoint;
     private Vector3 _startPos;
 
-    private bool _isGrabbed = false;
+    private bool _isTaken = false;
 
     private float _releaseTimer = 0f;
     private bool _releaseTimerOn = false;
@@ -21,7 +21,9 @@ public class TakeableObject : MonoBehaviour
     private Vector3 _previousPosition;
 
     public List<Fingertip> AttachedFingertips {  get { return _attachedFingertips; } }
-    public bool HasThumb {  get { return _hasThumbAttached; } }
+    public bool HasThumbAttached {  get { return _hasThumbAttached; } }
+
+    public bool IsTaken { get { return _isTaken; } }
 
     private void Start()
     {
@@ -47,14 +49,14 @@ public class TakeableObject : MonoBehaviour
             HandleReleaseTimer();
         }
 
-        if (_isGrabbed)
-        {
-            CheckForRelease();
-        }
-        else
-        {
-            CheckForGrab();
-        }    
+        //if (_isGrabbed)
+        //{
+        //    CheckForRelease();
+        //}
+        //else
+        //{
+        //    CheckForGrab();
+        //}    
     }
 
     private void CalculateVelocity()
@@ -69,53 +71,74 @@ public class TakeableObject : MonoBehaviour
 
         if (_releaseTimer > 1f)
         {
-            _isGrabbed = false;
+            _isTaken = false;
             _releaseTimerOn = false;
             _releaseTimer = 0f;
         }
     }
 
-    private void CheckForRelease()
+    public void Attach(FixedJoint fixedJoint)
     {
-        foreach (var fingertip in _attachedFingertips)
-        {
-            if (fingertip.IsReleasing)
-            {
-                Release(fingertip);
-                return;
-            }
-        }
+        //_fixedJoint = _attachedFingertips[0].FixedJoint;
+        _fixedJoint = fixedJoint;
+        _fixedJoint.connectedBody = _rb;
+        _isTaken = true;
     }
 
-    private void Release(Fingertip releasingFingertip)
+    public void Detach()
     {
-        DebugLogManager.Instance.PrintLog(_attachedFingertips.Count + OVRSkeleton.BoneLabelFromBoneId(releasingFingertip.Hand, releasingFingertip.BoneId) + " is releasing");
-
+        //DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(releasingFingertip.Hand, releasingFingertip.BoneId) + " is releasing");
+        
         if (_fixedJoint == null)
             return;
-
+        
         _fixedJoint.connectedBody = null;
         _fixedJoint = null;
         _releaseTimerOn = true;
         _rb.velocity = _velocity;
     }
 
-    private void CheckForGrab()
-    {
-        if (!_hasThumbAttached || _attachedFingertips.Count < 2)
-            return;
+    //private void CheckForRelease()
+    //{
+    //    foreach (var fingertip in _attachedFingertips)
+    //    {
+    //        if (fingertip.IsReleasing)
+    //        {
+    //            Release(fingertip);
+    //            return;
+    //        }
+    //    }
+    //}
 
-        DebugLogManager.Instance.PrintLog("attaching");
+    //private void Release(Fingertip releasingFingertip)
+    //{
+    //    DebugLogManager.Instance.PrintLog(_attachedFingertips.Count + OVRSkeleton.BoneLabelFromBoneId(releasingFingertip.Hand, releasingFingertip.BoneId) + " is releasing");
+    //
+    //    if (_fixedJoint == null)
+    //        return;
+    //
+    //    _fixedJoint.connectedBody = null;
+    //    _fixedJoint = null;
+    //    _releaseTimerOn = true;
+    //    _rb.velocity = _velocity;
+    //}
 
-        Grab();
-    }
+    //private void CheckForGrab()
+    //{
+    //    if (!_hasThumbAttached || _attachedFingertips.Count < 2)
+    //        return;
+    //
+    //    DebugLogManager.Instance.PrintLog("attaching");
+    //
+    //    Grab();
+    //}
 
-    private void Grab()
-    {
-        _fixedJoint = _attachedFingertips[0].FixedJoint;
-        _fixedJoint.connectedBody = _rb;
-        _isGrabbed = true;
-    }
+    //private void Grab()
+    //{
+    //    _fixedJoint = _attachedFingertips[0].FixedJoint;
+    //    _fixedJoint.connectedBody = _rb;
+    //    _isGrabbed = true;
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {
