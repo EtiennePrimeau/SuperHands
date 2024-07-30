@@ -57,18 +57,18 @@ public class TakeBox : MonoBehaviour
         return closestTakeable;
     }
 
-    public void AddGrabbableObject(TakeableObject takeableObject)
+    public void AddTakeableObject(TakeableObject takeableObject)
     {
         _registeredTakeables.Add(takeableObject);
 
-        //DebugLogManager.Instance.PrintLog(grabbable.gameObject.name + " was added");
+        //DebugLogManager.Instance.PrintLog(takeableObject.gameObject.name + " was added");
     }
 
-    public void RemoveGrabbableObject(TakeableObject takeableObject)
+    public void RemoveTakeableObject(TakeableObject takeableObject)
     {
         _registeredTakeables.Remove(takeableObject);
 
-        //DebugLogManager.Instance.PrintLog(grabbable.gameObject.name + " was removed");
+        //DebugLogManager.Instance.PrintLog(takeableObject.gameObject.name + " was removed");
 
     }
 }

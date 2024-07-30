@@ -9,11 +9,12 @@ public class TakeInteraction : MonoBehaviour
     [SerializeField] private GameObject _palmCollider;
     [SerializeField] private float _colliderReactivationDelay = 0.5f;
 
-    private bool _isTaking = false;
+    private bool _isTaking = false; // could be isHolding
     private bool _isReactivatingColliders = false;
     private float _colliderTimer = 0f;
 
     private TakeableObject _closestTakeable;
+    private TakeableObject _currentlyHeldTakeable;
 
     private void Update()
     {
@@ -22,34 +23,34 @@ public class TakeInteraction : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //TakeableObject closestTakeable = _takeBox.ClosestTakeable;
-        //List<Fingertip> attachedFingertips = closestTakeable.AttachedFingertips;
-        _closestTakeable = _takeBox.ClosestTakeable;
-        
         if (_isTaking)
         {
+            if (_currentlyHeldTakeable == null)
+                DebugLogManager.Instance.PrintLog("No currently held object");
+            
             CheckForRelease();
         }
         else
         {
+            _closestTakeable = _takeBox.ClosestTakeable;
             CheckForTake();
         }
     }
 
     private void CheckForRelease()
     {
-        foreach (var fingertip in _closestTakeable.AttachedFingertips)
+        foreach (var fingertip in _currentlyHeldTakeable.AttachedFingertips)
         {
             if (fingertip.IsReleasing)
             {
-                _closestTakeable.Detach();
+                _closestTakeable.Detach(fingertip);
 
+                _currentlyHeldTakeable = null;
                 _isTaking = false;
                 _isReactivatingColliders = true;
                 return;
             }
         }
-
     }
 
     private void CheckForTake()
@@ -68,7 +69,7 @@ public class TakeInteraction : MonoBehaviour
         ToggleBoneColliders(false);
 
         _closestTakeable.Attach(_fixedJoint);
-
+        _currentlyHeldTakeable = _closestTakeable;
     }
 
     private void HandleColliderTimer()

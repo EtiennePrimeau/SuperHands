@@ -63,6 +63,8 @@ public class TakeableObject : MonoBehaviour
     {
         _velocity = (transform.position - _previousPosition) / Time.fixedDeltaTime;
         _previousPosition = transform.position;
+        
+        //DebugLogManager.Instance.PrintLog(_velocity.magnitude.ToString());
     }
 
     private void HandleReleaseTimer()
@@ -85,9 +87,9 @@ public class TakeableObject : MonoBehaviour
         _isTaken = true;
     }
 
-    public void Detach()
+    public void Detach(Fingertip releasingFingertip)
     {
-        //DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(releasingFingertip.Hand, releasingFingertip.BoneId) + " is releasing");
+        DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(releasingFingertip.Hand, releasingFingertip.BoneId) + " is releasing");
         
         if (_fixedJoint == null)
             return;
@@ -95,7 +97,23 @@ public class TakeableObject : MonoBehaviour
         _fixedJoint.connectedBody = null;
         _fixedJoint = null;
         _releaseTimerOn = true;
+
+        //_attachedFingertips.Clear();
+        ResetAttachedFingertips();
+
         _rb.velocity = _velocity;
+        DebugLogManager.Instance.PrintLog(_velocity.magnitude.ToString());
+    }
+
+    private void ResetAttachedFingertips()
+    {
+        foreach (var fingertip in _attachedFingertips)
+        {
+            FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
+        }
+
+        _hasThumbAttached = false;
+        _attachedFingertips.Clear();
     }
 
     //private void CheckForRelease()
@@ -165,6 +183,9 @@ public class TakeableObject : MonoBehaviour
 
     public void RemoveFingertipFromList(Fingertip fingertip)
     {
+        if (_isTaken)
+            return;
+        
         if (_attachedFingertips.Remove(fingertip))
         {
             FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
@@ -174,5 +195,23 @@ public class TakeableObject : MonoBehaviour
                 _hasThumbAttached = false;
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        TakeBox takeBox = other.GetComponent<TakeBox>();
+        if (takeBox == null)
+            return;
+
+        takeBox.AddTakeableObject(this);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        TakeBox takeBox = other.GetComponent<TakeBox>();
+        if (takeBox == null)
+            return;
+
+        takeBox.RemoveTakeableObject(this);
     }
 }

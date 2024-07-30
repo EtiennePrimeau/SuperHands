@@ -17,7 +17,7 @@ public class Fingertip : MonoBehaviour
     
 
     private float _previousDistance = 0f;
-    private const float THRESHOLD = 13f; // default = 12
+    private const float THRESHOLD = 10f; // default = 12
     private const float MIN_DIST = 0.04f;
     private const float MAX_DIST = 0.12f;
     private const float RANGE = MAX_DIST - MIN_DIST;
