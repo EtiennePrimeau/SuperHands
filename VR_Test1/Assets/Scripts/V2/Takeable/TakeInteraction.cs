@@ -29,16 +29,16 @@ public class TakeInteraction : MonoBehaviour
                 DebugLogManager.Instance.PrintLog("No currently held object");
 
 
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_IndexTip, false);
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_MiddleTip, false);
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_PinkyTip, false);
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_RingTip, false);
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_ThumbTip, false);
-
-            foreach (var fingertip in _currentlyHeldTakeable.AttachedFingertips)
-            {
-                FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
-            }
+            //FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_IndexTip, false);
+            //FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_MiddleTip, false);
+            //FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_PinkyTip, false);
+            //FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_RingTip, false);
+            //FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_ThumbTip, false);
+            //
+            //foreach (var fingertip in _currentlyHeldTakeable.AttachedFingertips)
+            //{
+            //    FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
+            //}
 
 
             CheckForRelease();
@@ -70,12 +70,14 @@ public class TakeInteraction : MonoBehaviour
     {
         if (_closestTakeable == null)
             return;
-        if (_closestTakeable.IsTaken)
-            return;
 
-        if (!_closestTakeable.HasThumbAttached)
-            return;
-        if (_closestTakeable.AttachedFingertips.Count < 2)
+        //if (_closestTakeable.IsTaken)
+        //    return;
+        //if (!_closestTakeable.HasThumbAttached)
+        //    return;
+        //if (_closestTakeable.AttachedFingertips.Count < 2)
+        //    return;
+        if (!_closestTakeable.CanBeTaken())
             return;
 
         _isTaking = true;

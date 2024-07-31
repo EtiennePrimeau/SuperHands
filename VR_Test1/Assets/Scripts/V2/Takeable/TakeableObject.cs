@@ -1,14 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using static UnityEngine.Rendering.DebugUI;
 
 public class TakeableObject : MonoBehaviour
 {
+    public enum EPreferedHand
+    { Left, Right, None }
+    
+    
+    
+    
     private Rigidbody _rb;
     
-    private List<Fingertip> _attachedFingertips = new List<Fingertip>();
+    private List<Fingertip> _leftHandAttachedFingertips = new List<Fingertip>();
+    private List<Fingertip> _rightHandAttachedFingertips = new List<Fingertip>();
 
-    private bool _hasThumbAttached = false;
+    private bool _hasLeftThumbAttached = false;
+    private bool _hasRightThumbAttached = false;
+
+    private EPreferedHand _preferredHand = EPreferedHand.None;
+
     private FixedJoint _fixedJoint;
     private Vector3 _startPos;
 
@@ -20,8 +32,9 @@ public class TakeableObject : MonoBehaviour
     private Vector3 _velocity;
     private Vector3 _previousPosition;
 
-    public List<Fingertip> AttachedFingertips {  get { return _attachedFingertips; } }
-    public bool HasThumbAttached {  get { return _hasThumbAttached; } }
+    //public List<Fingertip> AttachedFingertips {  get { return _attachedFingertips; } }
+    public List<Fingertip> AttachedFingertips {  get { return PreferedAttachedFingertips(); } }
+    //public bool HasThumbAttached {  get { return _hasThumbAttached; } }
 
     public bool IsTaken { get { return _isTaken; } }
 
@@ -38,6 +51,12 @@ public class TakeableObject : MonoBehaviour
             _rb.velocity = Vector3.zero;
             transform.position = _startPos;
         }
+
+        DebugLogManager.Instance.TrackValue("Preferred Hand", _preferredHand.ToString());
+        DebugLogManager.Instance.TrackValue("Left Thumb", _hasLeftThumbAttached.ToString());
+        DebugLogManager.Instance.TrackValue("Left Fingertips", _leftHandAttachedFingertips.Count.ToString());
+        DebugLogManager.Instance.TrackValue("Right Fingertips", _rightHandAttachedFingertips.Count.ToString());
+
     }
 
     private void FixedUpdate()
@@ -81,7 +100,7 @@ public class TakeableObject : MonoBehaviour
 
     public void Attach(FixedJoint fixedJoint)
     {
-        if (_attachedFingertips.Count == 0)
+        if (AttachedFingertips.Count == 0)
             return;
         
         //_fixedJoint = _attachedFingertips[0].FixedJoint;
@@ -101,11 +120,11 @@ public class TakeableObject : MonoBehaviour
         _fixedJoint = null;
         _releaseTimerOn = true;
 
-        //_attachedFingertips.Clear();
         ResetAttachedFingertips();
+        _preferredHand = EPreferedHand.None;
 
         _rb.velocity = _velocity;
-        DebugLogManager.Instance.PrintLog(_velocity.magnitude.ToString());
+        //DebugLogManager.Instance.PrintLog(_velocity.magnitude.ToString());
     }
 
     private void ResetAttachedFingertips()
@@ -115,9 +134,130 @@ public class TakeableObject : MonoBehaviour
         //    FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
         //}
 
-        _hasThumbAttached = false;
-        _attachedFingertips.Clear();
+        switch (_preferredHand)
+        {
+            case EPreferedHand.Left:
+                SetHasThumbAttached(true, false);
+                ClearAttachedFingertips(true);
+
+                break;
+            case EPreferedHand.Right:
+                SetHasThumbAttached(false, false);
+                ClearAttachedFingertips(false);
+                break;
+
+            case EPreferedHand.None:
+            default:
+                break;
+        }
+
+        //_hasThumbAttached = false;
+        //_attachedFingertips.Clear();
     }
+
+    public bool CanBeTaken()
+    {
+        if (IsTaken)
+            return false;
+        //if (!HasThumbAttached)
+        //    return false;
+        //if (AttachedFingertips.Count < 2)
+        //    return false;
+
+        _preferredHand = EPreferedHand.None;
+
+        if (_hasLeftThumbAttached)
+        {
+            if (_leftHandAttachedFingertips.Count < 2)
+                return false;
+
+            _preferredHand = EPreferedHand.Left;
+            return true;
+        }
+
+        if (_hasRightThumbAttached)
+        {
+            if (_rightHandAttachedFingertips.Count < 2)
+                return false;
+
+            _preferredHand = EPreferedHand.Right;
+            return true;
+        }
+
+        return false;
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Fingertip fingertip = collision.gameObject.GetComponent<Fingertip>();
+        if (fingertip == null)
+            return;
+
+        bool isLeftHand = (fingertip.Hand == OVRSkeleton.SkeletonType.HandLeft);
+        //DebugLogManager.Instance.TrackValue("OnColl IsLeft", isLeftHand.ToString());
+
+
+        if (fingertip.BoneId == OVRSkeleton.BoneId.Hand_ThumbTip)
+        {
+            //_hasThumbAttached = true;
+            SetHasThumbAttached(isLeftHand, true);
+        }
+
+        //if (!_attachedFingertips.Contains(fingertip))
+        if (!AttachedFingertipsContains(isLeftHand, fingertip))
+        {
+            //_attachedFingertips.Add(fingertip);
+            AddToAttachedFingertips(isLeftHand, fingertip);
+
+            FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
+            //DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " Enter");
+        }
+        else
+        {
+            //Debug.Log(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " already in the list");
+        }
+    }
+
+    public void RemoveFingertipFromList(bool isLeftHand, Fingertip fingertip)
+    {
+        if (_isTaken)
+            return;
+
+        //if (_attachedFingertips.Remove(fingertip))
+        if (RemoveFromAttachedFingertips(isLeftHand, fingertip))
+        {
+            FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
+
+            if (fingertip.BoneId == OVRSkeleton.BoneId.Hand_ThumbTip)
+            {
+                //_hasThumbAttached = false;
+                SetHasThumbAttached(isLeftHand, false);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        TakeBox takeBox = other.GetComponent<TakeBox>();
+        if (takeBox == null)
+            return;
+
+        takeBox.AddTakeableObject(this);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        TakeBox takeBox = other.GetComponent<TakeBox>();
+        if (takeBox == null)
+            return;
+
+        takeBox.RemoveTakeableObject(this);
+    }
+
+
+
+    #region OldVersion
 
     //private void CheckForRelease()
     //{
@@ -160,61 +300,64 @@ public class TakeableObject : MonoBehaviour
     //    _fixedJoint.connectedBody = _rb;
     //    _isGrabbed = true;
     //}
+    #endregion
 
-    private void OnCollisionEnter(Collision collision)
+    #region LeftRightSelectors
+
+    private void SetHasThumbAttached(bool isLeft, bool value)
     {
-        Fingertip fingertip = collision.gameObject.GetComponent<Fingertip>();
-        if (fingertip == null)
-            return;
-
-        if (fingertip.BoneId == OVRSkeleton.BoneId.Hand_ThumbTip)
-        {
-            _hasThumbAttached = true;
-        }
-
-        if (!_attachedFingertips.Contains(fingertip))
-        {
-            _attachedFingertips.Add(fingertip);
-            //FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
-            //DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " Enter");
-        }
+        if (isLeft)
+            _hasLeftThumbAttached = value;
         else
+            _hasRightThumbAttached = value;
+    }
+
+    private bool AttachedFingertipsContains(bool isLeft, Fingertip fingertip)
+    {
+        if (isLeft)
+            return _leftHandAttachedFingertips.Contains(fingertip);
+        else
+            return _rightHandAttachedFingertips.Contains(fingertip);
+    }
+
+    private void AddToAttachedFingertips(bool isLeft, Fingertip fingertip)
+    {
+        if (isLeft)
+            _leftHandAttachedFingertips.Add(fingertip);
+        else
+            _rightHandAttachedFingertips.Add(fingertip);
+    }
+
+    private bool RemoveFromAttachedFingertips(bool isLeft, Fingertip fingertip)
+    {
+        if (isLeft)
+            return _leftHandAttachedFingertips.Remove(fingertip);
+        else
+            return _rightHandAttachedFingertips.Remove(fingertip);
+    }
+
+    private void ClearAttachedFingertips(bool isLeft)
+    {
+        if (isLeft)
+            _leftHandAttachedFingertips.Clear();
+        else
+            _rightHandAttachedFingertips.Clear();
+    }
+
+    private List<Fingertip> PreferedAttachedFingertips()
+    {
+        switch (_preferredHand)
         {
-            //Debug.Log(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " already in the list");
+            case EPreferedHand.Left:
+                return _leftHandAttachedFingertips;
+            case EPreferedHand.Right:
+                return _rightHandAttachedFingertips;
+
+            case EPreferedHand.None:
+            default:
+                return null;
         }
     }
 
-    public void RemoveFingertipFromList(Fingertip fingertip)
-    {
-        if (_isTaken)
-            return;
-        
-        if (_attachedFingertips.Remove(fingertip))
-        {
-            //FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
-
-            if (fingertip.BoneId == OVRSkeleton.BoneId.Hand_ThumbTip)
-            {
-                _hasThumbAttached = false;
-            }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        TakeBox takeBox = other.GetComponent<TakeBox>();
-        if (takeBox == null)
-            return;
-
-        takeBox.AddTakeableObject(this);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        TakeBox takeBox = other.GetComponent<TakeBox>();
-        if (takeBox == null)
-            return;
-
-        takeBox.RemoveTakeableObject(this);
-    }
+    #endregion
 }

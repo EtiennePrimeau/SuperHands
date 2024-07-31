@@ -24,7 +24,9 @@ public class TakeableReleaseTrigger : MonoBehaviour
         if (fingertip == null)
             return;
 
-        _takeableObject.RemoveFingertipFromList(fingertip);
+        bool isLeftHand = (fingertip.Hand == OVRSkeleton.SkeletonType.HandLeft);
+
+        _takeableObject.RemoveFingertipFromList(isLeftHand, fingertip);
     }
 
 }

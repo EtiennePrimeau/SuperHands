@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using static TakeableObject;
 
 public class TakeBox : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class TakeBox : MonoBehaviour
     private void FixedUpdate()
     {
         HighlightClosestTakeable();
+
     }
 
     private void HighlightClosestTakeable()
