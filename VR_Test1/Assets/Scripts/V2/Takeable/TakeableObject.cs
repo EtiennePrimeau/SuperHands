@@ -81,6 +81,9 @@ public class TakeableObject : MonoBehaviour
 
     public void Attach(FixedJoint fixedJoint)
     {
+        if (_attachedFingertips.Count == 0)
+            return;
+        
         //_fixedJoint = _attachedFingertips[0].FixedJoint;
         _fixedJoint = fixedJoint;
         _fixedJoint.connectedBody = _rb;
@@ -107,10 +110,10 @@ public class TakeableObject : MonoBehaviour
 
     private void ResetAttachedFingertips()
     {
-        foreach (var fingertip in _attachedFingertips)
-        {
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
-        }
+        //foreach (var fingertip in _attachedFingertips)
+        //{
+        //    FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
+        //}
 
         _hasThumbAttached = false;
         _attachedFingertips.Clear();
@@ -172,7 +175,7 @@ public class TakeableObject : MonoBehaviour
         if (!_attachedFingertips.Contains(fingertip))
         {
             _attachedFingertips.Add(fingertip);
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
+            //FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
             //DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " Enter");
         }
         else
@@ -188,7 +191,7 @@ public class TakeableObject : MonoBehaviour
         
         if (_attachedFingertips.Remove(fingertip))
         {
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
+            //FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
 
             if (fingertip.BoneId == OVRSkeleton.BoneId.Hand_ThumbTip)
             {

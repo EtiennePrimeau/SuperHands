@@ -27,7 +27,20 @@ public class TakeInteraction : MonoBehaviour
         {
             if (_currentlyHeldTakeable == null)
                 DebugLogManager.Instance.PrintLog("No currently held object");
-            
+
+
+            FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_IndexTip, false);
+            FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_MiddleTip, false);
+            FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_PinkyTip, false);
+            FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_RingTip, false);
+            FingerTipDebugVisual.Instance.ChangeDebugVisual(OVRSkeleton.BoneId.Hand_ThumbTip, false);
+
+            foreach (var fingertip in _currentlyHeldTakeable.AttachedFingertips)
+            {
+                FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
+            }
+
+
             CheckForRelease();
         }
         else
