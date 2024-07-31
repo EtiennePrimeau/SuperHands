@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "SuperMains 1.0\n\nAmusez-vous \xE0 manipuler les cubes avec vos propres
+  m_text: "SuperMains 2.0\n\nAmusez-vous \xE0 manipuler les cubes avec vos propres
     mains !\nVous pouvez les pousser, les ramasser, les rel\xE2cher, les lancer,
     voir plus !\n\nPour replacer les cubes \xE0 leur position d'origine, touchez
     la sph\xE8re \xE0 votre droite avec votre index jusqu'\xE0 ce qu'elle devienne
@@ -732,7 +732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8284631284267732625, guid: b8c5dcca52177324c96a708c094e4be1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.039
+      value: 0.042
       objectReference: {fileID: 0}
     - target: {fileID: 8284631284267732625, guid: b8c5dcca52177324c96a708c094e4be1, type: 3}
       propertyPath: m_LocalPosition.y
