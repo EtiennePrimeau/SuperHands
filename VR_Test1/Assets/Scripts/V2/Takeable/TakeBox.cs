@@ -27,11 +27,11 @@ public class TakeBox : MonoBehaviour
 
         if (_closestTakeable != null)
         {
-            //_closestTakeable.StopHighlight();
+            _closestTakeable.StopHighlight();
         }
         if (closestGrabbable != null)
         {
-            //closestGrabbable.HighlightAsGrabbable();
+            closestGrabbable.HighlightAsGrabbable();
         }
         _closestTakeable = closestGrabbable;
     }

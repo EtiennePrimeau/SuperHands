@@ -32,6 +32,10 @@ public class TakeableObject : MonoBehaviour
     private Vector3 _velocity;
     private Vector3 _previousPosition;
 
+    private Material _material;
+    private Color _originalColor;
+
+
     //public List<Fingertip> AttachedFingertips {  get { return _attachedFingertips; } }
     public List<Fingertip> AttachedFingertips {  get { return PreferedAttachedFingertips(); } }
     //public bool HasThumbAttached {  get { return _hasThumbAttached; } }
@@ -42,6 +46,9 @@ public class TakeableObject : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _startPos = transform.position;
+
+        _material = GetComponent<MeshRenderer>().material;
+        _originalColor = _material.color;
     }
 
     private void Update()
@@ -52,10 +59,10 @@ public class TakeableObject : MonoBehaviour
             transform.position = _startPos;
         }
 
-        DebugLogManager.Instance.TrackValue("Preferred Hand", _preferredHand.ToString());
-        DebugLogManager.Instance.TrackValue("Left Thumb", _hasLeftThumbAttached.ToString());
-        DebugLogManager.Instance.TrackValue("Left Fingertips", _leftHandAttachedFingertips.Count.ToString());
-        DebugLogManager.Instance.TrackValue("Right Fingertips", _rightHandAttachedFingertips.Count.ToString());
+        //DebugLogManager.Instance.TrackValue("Preferred Hand", _preferredHand.ToString());
+        //DebugLogManager.Instance.TrackValue("Left Thumb", _hasLeftThumbAttached.ToString());
+        //DebugLogManager.Instance.TrackValue("Left Fingertips", _leftHandAttachedFingertips.Count.ToString());
+        //DebugLogManager.Instance.TrackValue("Right Fingertips", _rightHandAttachedFingertips.Count.ToString());
 
     }
 
@@ -111,7 +118,7 @@ public class TakeableObject : MonoBehaviour
 
     public void Detach(Fingertip releasingFingertip)
     {
-        DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(releasingFingertip.Hand, releasingFingertip.BoneId) + " is releasing");
+        //DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(releasingFingertip.Hand, releasingFingertip.BoneId) + " is releasing");
         
         if (_fixedJoint == null)
             return;
@@ -187,6 +194,34 @@ public class TakeableObject : MonoBehaviour
         return false;
     }
 
+    public void ResetPositionAndVelocity()
+    {
+        transform.position = _startPos;
+        _rb.velocity = Vector3.zero;
+    }
+
+    public void HighlightAsGrabbable()
+    {
+        //DebugLogManager.Instance.PrintLog("Highlighting");
+
+        //Color color = _material.color;
+        //color.a = 0.1f;
+        //_material.color = color;
+
+        _material.color = Color.gray;
+    }
+
+    public void StopHighlight()
+    {
+        //DebugLogManager.Instance.PrintLog("stopping highlight");
+
+        //Color color = _material.color;
+        //color.a = 1f;
+        //_material.color = color;
+
+        _material.color = _originalColor;
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -210,7 +245,7 @@ public class TakeableObject : MonoBehaviour
             //_attachedFingertips.Add(fingertip);
             AddToAttachedFingertips(isLeftHand, fingertip);
 
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
+            //FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, true);
             //DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(fingertip.Hand, fingertip.BoneId) + " Enter");
         }
         else
@@ -227,7 +262,7 @@ public class TakeableObject : MonoBehaviour
         //if (_attachedFingertips.Remove(fingertip))
         if (RemoveFromAttachedFingertips(isLeftHand, fingertip))
         {
-            FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
+            //FingerTipDebugVisual.Instance.ChangeDebugVisual(fingertip.BoneId, false);
 
             if (fingertip.BoneId == OVRSkeleton.BoneId.Hand_ThumbTip)
             {

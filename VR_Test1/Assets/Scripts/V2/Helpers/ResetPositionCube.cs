@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ResetPositionCube : MonoBehaviour
 {
-    [SerializeField] private GrabbableObject cube1;
-    [SerializeField] private GrabbableObject cube2;
+    [SerializeField] private TakeableObject cube1;
+    [SerializeField] private TakeableObject cube2;
     [SerializeField] private Material _material;
 
     private float _timer = 0f;
