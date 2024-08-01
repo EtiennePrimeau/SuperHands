@@ -13,7 +13,7 @@ public class TestGrabbableGrabBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GrabBox grabBox = other.GetComponent<GrabBox>();
+        GrabBox_Old grabBox = other.GetComponent<GrabBox_Old>();
         if (grabBox == null)
             return;
 
@@ -22,7 +22,7 @@ public class TestGrabbableGrabBox : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        GrabBox grabBox = other.GetComponent<GrabBox>();
+        GrabBox_Old grabBox = other.GetComponent<GrabBox_Old>();
         if (grabBox == null)
             return;
 

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabBox : MonoBehaviour
+public class GrabBox_Old : MonoBehaviour
 {
-    private List<GrabbableObject> _registeredGrabbables = new List<GrabbableObject>();
-    public List<GrabbableObject> RegisteredGrabbables { get { return _registeredGrabbables; } }
+    private List<GrabbableObject_Old> _registeredGrabbables = new List<GrabbableObject_Old>();
+    public List<GrabbableObject_Old> RegisteredGrabbables { get { return _registeredGrabbables; } }
 
-    private GrabbableObject _closestGrabbable;
-    public GrabbableObject ClosestGrabbable { get { return _closestGrabbable; } }
+    private GrabbableObject_Old _closestGrabbable;
+    public GrabbableObject_Old ClosestGrabbable { get { return _closestGrabbable; } }
 
     private void FixedUpdate()
     {
@@ -17,7 +17,7 @@ public class GrabBox : MonoBehaviour
 
     private void HighlightClosestGrabbable()
     {
-        GrabbableObject closestGrabbable = CalculateClosestGrabbableObject();
+        GrabbableObject_Old closestGrabbable = CalculateClosestGrabbableObject();
 
         if (closestGrabbable == _closestGrabbable)
             return;
@@ -34,7 +34,7 @@ public class GrabBox : MonoBehaviour
         _closestGrabbable = closestGrabbable;
     }
 
-    private GrabbableObject CalculateClosestGrabbableObject()
+    private GrabbableObject_Old CalculateClosestGrabbableObject()
     {
         if (_registeredGrabbables.Count == 0)
             return null;
@@ -42,7 +42,7 @@ public class GrabBox : MonoBehaviour
             return _registeredGrabbables[0];
 
 
-        GrabbableObject closestGrabbable = _registeredGrabbables[0];
+        GrabbableObject_Old closestGrabbable = _registeredGrabbables[0];
         foreach (var grabbable in _registeredGrabbables)
         {
             if (grabbable == closestGrabbable) continue;
@@ -57,14 +57,14 @@ public class GrabBox : MonoBehaviour
         return closestGrabbable;
     }
 
-    public void AddGrabbableObject(GrabbableObject grabbable)
+    public void AddGrabbableObject(GrabbableObject_Old grabbable)
     {
         _registeredGrabbables.Add(grabbable);
 
         //DebugLogManager.Instance.PrintLog(grabbable.gameObject.name + " was added");
     }
 
-    public void RemoveGrabbableObject(GrabbableObject grabbable)
+    public void RemoveGrabbableObject(GrabbableObject_Old grabbable)
     {
         _registeredGrabbables.Remove(grabbable);
 

@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabInteraction : MonoBehaviour
+public class GrabInteraction_Old : MonoBehaviour
 {
     [SerializeField] private Fingertip[] _fingertips = new Fingertip[5];
-    [SerializeField] private GrabBox _grabBox;
+    [SerializeField] private GrabBox_Old _grabBox;
     [SerializeField] private FixedJoint _fixedJoint;
     [SerializeField] private GameObject _palmCollider;
     [SerializeField] private float _colliderReactivationDelay = 0.5f;
 
-    private List<GrabbableObject> _grabbedObjects = new List<GrabbableObject>();
+    private List<GrabbableObject_Old> _grabbedObjects = new List<GrabbableObject_Old>();
 
     private bool _isGrabbing = false;
     private bool _isReactivatingColliders = false;
@@ -65,7 +65,7 @@ public class GrabInteraction : MonoBehaviour
 
     private void Grab()
     {
-        GrabbableObject grabbable = _grabBox.ClosestGrabbable;
+        GrabbableObject_Old grabbable = _grabBox.ClosestGrabbable;
         if (grabbable == null)
             return;
         if (grabbable.IsAttached)

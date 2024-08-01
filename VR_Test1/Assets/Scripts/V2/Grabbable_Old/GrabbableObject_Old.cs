@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GrabbableObject : MonoBehaviour
+public class GrabbableObject_Old : MonoBehaviour
 {
     private FixedJoint _attachedFixedJoint;
     private Rigidbody _rb;
@@ -39,7 +39,7 @@ public class GrabbableObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GrabBox grabBox = other.GetComponent<GrabBox>();
+        GrabBox_Old grabBox = other.GetComponent<GrabBox_Old>();
         if (grabBox == null)
             return;
 
@@ -48,7 +48,7 @@ public class GrabbableObject : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        GrabBox grabBox = other.GetComponent<GrabBox>();
+        GrabBox_Old grabBox = other.GetComponent<GrabBox_Old>();
         if (grabBox == null)
             return;
 
