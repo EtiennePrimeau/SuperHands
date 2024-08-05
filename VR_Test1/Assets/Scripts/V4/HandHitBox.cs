@@ -18,8 +18,8 @@ public class HandHitBox : MonoBehaviour
     {
         GrabbableObject closestGrabbable = CalculateClosestGrabbableObject();
 
-        if (closestGrabbable == _closestGrabbable)
-            return;
+        //if (closestGrabbable == _closestGrabbable)
+        //    return;
 
 
         if (_closestGrabbable != null)

@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class GrabbableObject : MonoBehaviour
 {
-    private enum EPreferedHand
+    public enum EHandSide
     { Left, Right, None }
-    private EPreferedHand _preferredHand = EPreferedHand.None;
+    private EHandSide _preferredHand = EHandSide.None;
+    public EHandSide PreferredHand { get { return _preferredHand; } }
 
     private Rigidbody _rb;
     private FixedJoint _fixedJoint;
@@ -13,6 +14,17 @@ public class GrabbableObject : MonoBehaviour
     private List<Fingertip> _leftHandAttachedFingertips = new List<Fingertip>();
     private List<Fingertip> _rightHandAttachedFingertips = new List<Fingertip>();
     public List<Fingertip> AttachedFingertips { get { return PreferedAttachedFingertips(); } }
+
+    #region GrabbableDebug
+    /// <summary>
+    /// Only used for Debug
+    /// </summary>
+    public List<Fingertip> LeftFingertips { get { return _leftHandAttachedFingertips; } }
+    /// <summary>
+    /// Only used for Debug
+    /// </summary>
+    public List<Fingertip> RightFingertips { get { return _rightHandAttachedFingertips; } }
+    #endregion
 
     private bool _hasLeftThumbAttached = false;
     private bool _hasRightThumbAttached = false;
@@ -80,7 +92,7 @@ public class GrabbableObject : MonoBehaviour
         _releaseTimerOn = true;
 
         ResetAttachedFingertips();
-        _preferredHand = EPreferedHand.None;
+        _preferredHand = EHandSide.None;
 
         _rb.velocity = _velocity;
         //DebugLogManager.Instance.PrintLog(_velocity.magnitude.ToString());
@@ -104,28 +116,28 @@ public class GrabbableObject : MonoBehaviour
         }
     }
 
-    public bool CanBeGrabbed()
+    public bool CanBeGrabbed(EHandSide grabbingHand)
     {
         if (IsGrabbed)
             return false;
 
-        _preferredHand = EPreferedHand.None;
+        _preferredHand = EHandSide.None;
 
-        if (_hasLeftThumbAttached)
+        if (grabbingHand == EHandSide.Left && _hasLeftThumbAttached)
         {
             if (_leftHandAttachedFingertips.Count < 2)
                 return false;
 
-            _preferredHand = EPreferedHand.Left;
+            _preferredHand = EHandSide.Left;
             return true;
         }
 
-        if (_hasRightThumbAttached)
+        if (grabbingHand == EHandSide.Right && _hasRightThumbAttached)
         {
             if (_rightHandAttachedFingertips.Count < 2)
                 return false;
 
-            _preferredHand = EPreferedHand.Right;
+            _preferredHand = EHandSide.Right;
             return true;
         }
 
@@ -247,12 +259,12 @@ public class GrabbableObject : MonoBehaviour
     {
         switch (_preferredHand)
         {
-            case EPreferedHand.Left:
+            case EHandSide.Left:
                 return _leftHandAttachedFingertips;
-            case EPreferedHand.Right:
+            case EHandSide.Right:
                 return _rightHandAttachedFingertips;
 
-            case EPreferedHand.None:
+            case EHandSide.None:
             default:
                 return null;
         }
@@ -262,17 +274,17 @@ public class GrabbableObject : MonoBehaviour
     {
         switch (_preferredHand)
         {
-            case EPreferedHand.Left:
+            case EHandSide.Left:
                 SetHasThumbAttached(true, false);
                 ClearAttachedFingertips(true);
 
                 break;
-            case EPreferedHand.Right:
+            case EHandSide.Right:
                 SetHasThumbAttached(false, false);
                 ClearAttachedFingertips(false);
                 break;
 
-            case EPreferedHand.None:
+            case EHandSide.None:
             default:
                 break;
         }

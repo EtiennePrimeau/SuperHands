@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GrabInteraction : MonoBehaviour
 {
+    
+    [SerializeField] private GrabbableObject.EHandSide _handSide = GrabbableObject.EHandSide.None;
     [SerializeField] private Fingertip[] _fingertips = new Fingertip[5];
     [SerializeField] private HandHitBox _handHitBox;
     [SerializeField] private FixedJoint _fixedJoint;
@@ -57,11 +59,13 @@ public class GrabInteraction : MonoBehaviour
         if (_closestGrabbable == null)
             return;
 
-        if (!_closestGrabbable.CanBeGrabbed())
+        if (!_closestGrabbable.CanBeGrabbed(_handSide))
             return;
 
         _isHolding = true;
         ToggleBoneColliders(false);
+
+        DebugLogManager.Instance.PrintLog(gameObject.name + " is calling Attach");
 
         _closestGrabbable.Attach(_fixedJoint);
         _currentlyHeldGrabbable = _closestGrabbable;
