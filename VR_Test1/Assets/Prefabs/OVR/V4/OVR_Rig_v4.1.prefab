@@ -3565,7 +3565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
-  instanceId: 9a7960fd-aefa-4b8e-aede-d775845a5667
+  instanceId: 774ee8e1-10ea-4799-ae96-22e57a52ae6b
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -3693,7 +3693,7 @@ MonoBehaviour:
   _leftHand: {fileID: 3364405605486283304}
   _rightSkeleton: {fileID: 1045090006142085515}
   _leftSkeleton: {fileID: 4775314603119373396}
-  _painPointPrefab: {fileID: 8456326013662253779, guid: ff888e5bc5e9b96458458406b5ee3a16, type: 3}
+  _painPointPrefab: {fileID: 5160486175195533561, guid: 89eecc3ec2412dc40901f6286a6cdd54, type: 3}
 --- !u!1 &5520064301406935453
 GameObject:
   m_ObjectHideFlags: 0
@@ -5534,7 +5534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
-  instanceId: 32468127-25af-45b6-bb92-0449f9862d61
+  instanceId: 38e729d2-2fa8-49c5-8c7b-cabf6e68ccdb
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 

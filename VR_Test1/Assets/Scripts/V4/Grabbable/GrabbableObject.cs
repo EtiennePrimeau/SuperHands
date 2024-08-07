@@ -72,6 +72,8 @@ public class GrabbableObject : MonoBehaviour
 
     public void Attach(FixedJoint fixedJoint)
     {
+        DebugLogManager.Instance.PrintLog("Attaching");
+        
         if (AttachedFingertips.Count == 0)
             return;
 

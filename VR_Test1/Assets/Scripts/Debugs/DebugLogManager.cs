@@ -30,6 +30,12 @@ public class DebugLogManager : MonoBehaviour
     {
         var go = Instantiate(_logPrefab, _logTransform);
         var tmp = go.GetComponent<TextMeshProUGUI>();
+
+        //Sets the width of the logInstance to the width of its panel
+        Vector2 size = _logTransform.gameObject.GetComponent<RectTransform>().sizeDelta;
+        size.y = tmp.rectTransform.sizeDelta.y;
+        tmp.rectTransform.sizeDelta = size;
+
         tmp.text = str;
     }
 
