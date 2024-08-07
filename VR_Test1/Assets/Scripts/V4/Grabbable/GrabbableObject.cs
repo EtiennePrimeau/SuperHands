@@ -70,19 +70,27 @@ public class GrabbableObject : MonoBehaviour
         }
     }
 
-    public void Attach(FixedJoint fixedJoint)
+    public virtual bool TryAttach(FixedJoint fixedJoint, EHandSide handSide)
     {
-        DebugLogManager.Instance.PrintLog("Attaching");
+        //DebugLogManager.Instance.PrintLog("Try Attach - GO");
         
         if (AttachedFingertips.Count == 0)
-            return;
+            return false;
 
+        Attach(fixedJoint, handSide);
+        return true;
+    }
+
+    private void Attach(FixedJoint fixedJoint, EHandSide handSide)
+    {
+        //DebugLogManager.Instance.PrintLog("Attaching - GO");
+        
         _fixedJoint = fixedJoint;
         _fixedJoint.connectedBody = _rb;
         _isGrabbed = true;
     }
 
-    public void Detach(Fingertip releasingFingertip)
+    public virtual void Detach(Fingertip releasingFingertip)
     {
         //DebugLogManager.Instance.PrintLog(OVRSkeleton.BoneLabelFromBoneId(releasingFingertip.Hand, releasingFingertip.BoneId) + " is releasing");
 
@@ -152,12 +160,12 @@ public class GrabbableObject : MonoBehaviour
         _rb.velocity = Vector3.zero;
     }
 
-    public void HighlightAsGrabbable()
+    public virtual void HighlightAsGrabbable(EHandSide handSide)
     {
         _material.color = Color.gray;
     }
 
-    public void StopHighlight()
+    public virtual void StopHighlight(EHandSide handSide)
     {
         _material.color = _originalColor;
     }

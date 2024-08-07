@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class HandHitBox : MonoBehaviour
 {
+    [SerializeField] private GrabbableObject.EHandSide _handSide = GrabbableObject.EHandSide.None;
+
     private List<GrabbableObject> _registeredGrabbables = new List<GrabbableObject>();
     public List<GrabbableObject> RegisteredGrabbables { get { return _registeredGrabbables; } }
 
@@ -24,11 +26,11 @@ public class HandHitBox : MonoBehaviour
 
         if (_closestGrabbable != null)
         {
-            _closestGrabbable.StopHighlight();
+            _closestGrabbable.StopHighlight(_handSide);
         }
         if (closestGrabbable != null)
         {
-            closestGrabbable.HighlightAsGrabbable();
+            closestGrabbable.HighlightAsGrabbable(_handSide);
         }
         _closestGrabbable = closestGrabbable;
     }

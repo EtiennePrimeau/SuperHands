@@ -47,18 +47,35 @@ public class GrabbableDebug : MonoBehaviour
 
     private void Start()
     {
-        _leftHandFingertips = _grabbableObject.LeftFingertips;
-        _rightHandFingertips = _grabbableObject.RightFingertips;
+        if (_grabbableObject == null)
+            return;
 
-        _preferredHand = _grabbableObject.PreferredHand;
+        LinkElements();
     }
 
     private void Update()
     {
+        if (_grabbableObject == null)
+            return;
+        
         UpdateImages(_leftHand, _leftHandFingertips);
         UpdateImages(_rightHand, _rightHandFingertips);
 
         _preferredHandTMP.text = "Preferred Hand : " + _grabbableObject.PreferredHand.ToString();
+    }
+
+    public void AssignGrabbableObject(GrabbableObject obj)
+    {
+        _grabbableObject = obj;
+        LinkElements();
+    }
+
+    private void LinkElements()
+    {
+        _leftHandFingertips = _grabbableObject.LeftFingertips;
+        _rightHandFingertips = _grabbableObject.RightFingertips;
+
+        _preferredHand = _grabbableObject.PreferredHand;
     }
 
     private void UpdateImages(Image[] hand, List<Fingertip> fingertips)

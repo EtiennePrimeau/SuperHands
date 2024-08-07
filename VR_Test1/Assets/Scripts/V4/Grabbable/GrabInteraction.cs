@@ -62,13 +62,22 @@ public class GrabInteraction : MonoBehaviour
         if (!_closestGrabbable.CanBeGrabbed(_handSide))
             return;
 
-        _isHolding = true;
-        ToggleBoneColliders(false);
+        //DebugLogManager.Instance.PrintLog(gameObject.name + " is calling Attach");
+        //
+        //_isHolding = true;
+        //ToggleBoneColliders(false);
+        //
+        //_closestGrabbable.Attach(_fixedJoint, _handSide);
+        //_currentlyHeldGrabbable = _closestGrabbable;
 
-        DebugLogManager.Instance.PrintLog(gameObject.name + " is calling Attach");
-
-        _closestGrabbable.Attach(_fixedJoint);
-        _currentlyHeldGrabbable = _closestGrabbable;
+        if (_closestGrabbable.TryAttach(_fixedJoint, _handSide))
+        {
+            _isHolding = true;
+            ToggleBoneColliders(false);
+            _currentlyHeldGrabbable = _closestGrabbable;
+        }
+        else
+            DebugLogManager.Instance.PrintLog("Failed to Attach");
     }
 
     private void HandleColliderTimer()
